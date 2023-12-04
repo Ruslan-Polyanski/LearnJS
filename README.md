@@ -17,7 +17,7 @@ Learning information about JS in learn.javascript.ru
 2.3 Строгий режим — "use strict"
 2.4 Переменные
 2.5 Типы данных
-Взаимодействие: alert, prompt, confirm
+2.6 Взаимодействие: alert, prompt, confirm
 Преобразование типов
 Базовые операторы, математика
 Операторы сравнения
