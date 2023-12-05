@@ -11,7 +11,7 @@ Learning information about JS in learn.javascript.ru
 1.4 Консоль разработчика
 
 Основы JavaScript
-
+git 
 2.1 Привет, мир!
 2.2 Структура кода
 2.3 Строгий режим — "use strict"
@@ -19,7 +19,7 @@ Learning information about JS in learn.javascript.ru
 2.5 Типы данных
 2.6 Взаимодействие: alert, prompt, confirm
 2.7 Преобразование типов
-Базовые операторы, математика
+2.8 Базовые операторы, математика
 Операторы сравнения
 Условное ветвление: if, '?'
 Логические операторы
