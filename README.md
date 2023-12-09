@@ -27,6 +27,6 @@ git
 2.13 Циклы while и for
 2.14 Конструкция "switch"
 2.15 Функции
-Function Expression
+2.16 Function Expressions
 Стрелочные функции, основы
 Особенности JavaScript
