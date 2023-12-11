@@ -40,7 +40,7 @@ Learning information about JS in learn.javascript.ru
 
  ## Объекты: основы
 
- - Объекты
+ - 4.1 Объекты
  - Копирование объектов и ссылки
  - Сборка мусора
  - Методы объекта, "this"
