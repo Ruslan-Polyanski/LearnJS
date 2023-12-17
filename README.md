@@ -46,5 +46,5 @@ Learning information about JS in learn.javascript.ru
  - 4.4 Методы объекта, "this"
  - 4.5 Конструктор, оператор "new"
  - 4.6 Опциональная цепочка '?.'
- - Тип данных Symbol
+ - 4.7 Тип данных Symbol
  - Преобразование объектов в примитивы
