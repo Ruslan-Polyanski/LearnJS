@@ -31,6 +31,7 @@ Learning information about JS in learn.javascript.ru
  - 2.18 Особенности JavaScript
 
  ## Качество кода
+ 
  - 3.1 Отладка в браузере
  - Советы по стилю кода
  - Комментарии
@@ -47,4 +48,4 @@ Learning information about JS in learn.javascript.ru
  - 4.5 Конструктор, оператор "new"
  - 4.6 Опциональная цепочка '?.'
  - 4.7 Тип данных Symbol
- - Преобразование объектов в примитивы
+ - 4.8 Преобразование объектов в примитивы
