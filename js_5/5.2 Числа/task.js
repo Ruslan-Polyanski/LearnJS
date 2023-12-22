@@ -85,5 +85,47 @@ console.log( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
 // Привет! Я – число, растущее само по себе!
 console.log( 9999999999999999 ); // покажет 10000000000000000
 
+// isNaN(value) преобразует значение в число и проверяет является ли оно NaN
+console.log( isNaN(NaN) ); // true
+console.log( isNaN("str") ); // true
+
+console.log( NaN === NaN ); // false
+
+// isFinite(value) преобразует аргумент в число и возвращает true, 
+// если оно является обычным числом, т.е. не NaN/Infinity/-Infinity:
+
+console.log( isFinite("15") ); // true
+console.log( isFinite("str") ); // false, потому что специальное значение: NaN
+console.log( isFinite(Infinity) ); // false, потому что специальное значение: Infinity
+
+let num5 = +prompt("Введите число:", '');
+// вернёт true всегда, кроме ситуаций, когда аргумент - Infinity/-Infinity или не число
+console.log( isFinite(num5) );
+
+console.log( +"100px" ); // NaN
+
+// parseInt и parseFloat «читают» число из строки
+console.log( parseInt('100px') ); // 100
+console.log( parseFloat('12.5em') ); // 12.5
+
+console.log( parseInt('12.3') ); // 12, вернётся только целая часть
+console.log( parseFloat('12.3.4') ); // 12.3, произойдёт остановка чтения на второй точке
+
+// Функции parseInt/parseFloat вернут NaN, если не смогли прочитать ни одну цифру:
+console.log( parseInt('a123') ); // NaN, на первом символе происходит остановка чтения
+
+console.log( parseInt('0xff', 16) ); // 255
+console.log( parseInt('ff', 16) ); // 255, без 0x тоже работает
+console.log( parseInt('2n9c', 36) ); // 123456
+
+console.log( Math.random() ); // 0.1234567894322
+console.log( Math.random() ); // 0.5435252343232
+console.log( Math.random() ); // ... (любое количество псевдослучайных чисел)
+
+console.log( Math.max(3, 5, -10, 0, 1) ); // 5
+console.log( Math.min(1, 2) ); // 1
+
+console.log( Math.pow(2, 10) ); // 2 в степени 10 = 1024
+
 
 
