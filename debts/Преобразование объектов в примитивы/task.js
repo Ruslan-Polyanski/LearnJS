@@ -10,3 +10,5 @@ console.log(obj1 == obj2); // false
 console.log([1,2].toString()) // 1,2
 console.log(([1, 2]) == '1,2') // true
 console.log(([1, 2]) == 1) // false
+
+console.log(([1,2,3]) == ('1,2,3')) // true
