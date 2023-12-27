@@ -1,4 +1,4 @@
-
+//////////////
 function multiply(a: number, b: number) {
   return a * b;
 }
@@ -7,7 +7,7 @@ multiply(3, 8); // 24
 multiply(1, 2); // 2
 
 
-
+//////////////
 function repeat(text: string, count: number) {
   let result = '';
   
@@ -22,7 +22,7 @@ repeat('hexlet', 2); // hexlethexlet
 repeat('wo', 3); // wowowo
 
 
-
+//////////////
 function getHiddenCard(tel: string, count = 4): string {
   const lastFourSimbols = tel.slice(-4);
   const starSimbol = '*';
@@ -37,7 +37,7 @@ getHiddenCard('1234567812345678')    // "****5678"
 getHiddenCard('2034399002121100', 1) // "*1100"
 
 
-
+//////////////
 function getEvenNums(numbers: Array<number>): Array<number> {
   const result = numbers.filter((num) => !(num % 2));
   return result;
@@ -52,7 +52,7 @@ const numbers1 = [1, 3, 8, 9, 100, 23, 55, 34];
 const getEvenNumbers2 = () => numbers1.filter((num) => !(num % 2));
 
 
-
+////////////////
 function filterAnagrams(word: string, wordsArray: Array<string>): Array<string> {
   const lettersArraySort = word.split('').sort().join('');
   const result = wordsArray.filter((word) => word.split('').sort().join('') === lettersArraySort)
@@ -67,3 +67,82 @@ filterAnagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']);
 
 filterAnagrams('laser', ['lazing', 'lazy',  'lacer']);
 // []
+
+
+
+///////////////
+function isComplete(course: {name: string, lessons: Array<string>}): boolean {
+  return course.lessons.length >= 4 ? true : false;
+}
+
+// Определите тип исходя из структуры объекта
+const course = {
+  name: 'Java',
+  lessons: ['variables', 'functions', 'conditions'],
+};
+isComplete(course); // false
+
+
+
+///////////////////
+enum statusUser {
+  user,
+  admin,
+  superAdmin,
+}
+console.log(statusUser.user)
+
+
+enum ModalStatus {
+  Opened,
+  Closed
+} 
+
+function buildModal(text: string, status: ModalStatus): {text: string, status: ModalStatus} {
+  return {text, status};
+}
+
+const modal = buildModal('hexlet forever', ModalStatus.Opened);
+// { text: 'hexlet forever', status: ModalStatus.Opened }
+
+
+/////////////
+
+type TUser = {
+  name: string,
+  age: number,
+}
+
+type TFunc = (user1: TUser, user2: TUser) => TUser | null;
+
+const user1 = { name: 'Petr', age: 8 };
+const user2 = { name: 'Liza', age: 7 };
+
+const getOlderUser: TFunc = (user1, user2) => {
+  if(user1.age === user2.age) {
+    return null;
+  }
+
+  if(user1.age > user2.age) {
+    return user1;
+  }
+
+  return user2;
+}
+
+// function getOlderUser(user1: TUser, user2: TUser): TUser | null {
+//   if(user1.age === user2.age) {
+//     return null;
+//   }
+
+//   if(user1.age > user2.age) {
+//     return user1;
+//   }
+
+//   return user2;
+// }
+
+console.log(getOlderUser(user1, user2))
+
+
+
