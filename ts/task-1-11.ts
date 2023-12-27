@@ -145,4 +145,66 @@ const getOlderUser: TFunc = (user1, user2) => {
 console.log(getOlderUser(user1, user2))
 
 
+////////////////
+const num1: any = 5;
+num1()
+num1.value
+
+const num: unknown = 5;
+if(typeof num === 'function') {
+  num()
+}
+
+
+
+(() => {
+
+// Реализуйте функцию getParams(), которая принимает 
+// на вход строку запроса (query string) и возвращает параметры в виде объекта
+
+function getParams(query: string): any {
+  const pairs = query.split('&');
+  const initial: any = {};
+  const result = pairs.reduce((acc, pair) => {
+    const pairArray = pair.split('=');
+    acc[pairArray[0]] = pairArray[1];
+    return acc;
+  }, initial);
+  return result;
+}
+
+  getParams('per=10&page=5');
+  // { per: '10', page: '5' }
+  getParams('name=hexlet&count=3&order=asc');
+  // { name: 'hexlet', count: '3', order: 'asc' }
+
+});
+
+
+
+////////////// 11
+
+  namespace Company {
+    export function isEmployeeEmail(email: string, domen: string): boolean {
+      const [name1, name2] = email.split('@');
+      return name2 === domen;
+    }
+  }
+
+  Company.isEmployeeEmail('tirion@hexlet.io', 'hexlet.io');
+  // true
+
+  Company.isEmployeeEmail('user@example.com', 'hexlet.io');
+  // false
+
+
+
+
+
+
+
+
+
+
+
 
