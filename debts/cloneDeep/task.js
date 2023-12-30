@@ -43,6 +43,6 @@ function cloneDeep(obj) {
 const newObj = cloneDeep(obj);
 
 console.log(newObj)
-console.log(newObj === obj)
-console.log(newObj.status === obj.status)
-console.log(newObj.status.isChildren === obj.status.isChildren)
+// console.log(newObj === obj)
+// console.log(newObj.status === obj.status)
+// console.log(newObj.status.isChildren === obj.status.isChildren)
