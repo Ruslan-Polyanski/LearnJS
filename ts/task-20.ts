@@ -15,12 +15,19 @@ function isString(value: unknown): value is string {
 function last(value: unknown) {
   if(isNumber(value)) {
     const arr = value.toString().split('');
-    return +arr[arr.length - 1];
+    const result = +arr[arr.length - 1];
+    return result;
   }
 
   if(isString(value)) {
+    if(!value) {
+      return value;
+    }
+
     const arr = value.split('');
-    return arr[arr.length - 1];
+    const result = arr[arr.length - 1];
+
+    return result;
   }
 }
 
