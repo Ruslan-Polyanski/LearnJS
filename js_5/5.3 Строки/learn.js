@@ -55,3 +55,11 @@ alert( str11.indexOf("id") ); // 1, подстрока "id" найдена на 
 
 // str.lastIndexOf(substr, position) с конца в начало
 
+alert( "Widget with id".includes("Widget") ); // true
+alert( "Hello".includes("Bye") ); // false
+
+alert( "Widget".startsWith("Wid") ); // true, "Wid" — начало "Widget"
+alert( "Widget".endsWith("get") ); // true, "get" — окончание "Widget"
+
+
+
