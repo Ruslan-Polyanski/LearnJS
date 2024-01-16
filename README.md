@@ -55,7 +55,7 @@ Learning information about JS in learn.javascript.ru
  - 5.1 Методы примитивов
  - 5.2 Числа
  - 5.3 Строки
- - Массивы
+ - 5.4 Массивы
  - Методы массивов
  - Перебираемые объекты
  - Map и Set
