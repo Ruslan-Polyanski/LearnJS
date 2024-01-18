@@ -1,23 +1,23 @@
 
 function Spacecraft(name, fuelType) {
-  this.name = name;
-  this.fuelType = fuelType;
-  this.fuelLevel = 100;
-  this.isInSpace = false;
-  this.launch = function() {
+  this.name = name; // Имя корабля
+  this.fuelType = fuelType; // Тип топлива
+  this.fuelLevel = 100; // Уровень топлива
+  this.isInSpace = false; // Карабль в космосе или нет
+  this.launch = function() { // Взлет
     this.fuelLevel -= 10;
     this.isInSpace = true;
   };
-  this.land = function(destination) {
+  this.land = function(destination) { // Посадка
     if(destination === 'Mars') {
       this.fuelLevel -= 10;
       this.isInSpace = false;
     }
   };
-  this.checkFuel = function() {
+  this.checkFuel = function() { // Проверка топлива
     return this.fuelLevel;
   };
-  this.refuel = function(amount) {
+  this.refuel = function(amount) { // Заправка топливом
     this.fuelLevel + amount > 100 
       ? this.fuelLevel = 100 
       : this.fuelLevel += amount;
@@ -25,17 +25,17 @@ function Spacecraft(name, fuelType) {
 }
 
 function MarsRover(model, navigation) {
-  this.model = model;
-  this.navigation = navigation;
-  this.dataCollected = [];
-  this.move = function(direction) {
+  this.model = model; // Модель марсохода
+  this.navigation = navigation; // Система навигации
+  this.dataCollected = []; // Собранные данные
+  this.move = function(direction) { // Перемещение
     this.navigation.x = direction.x;
     this.navigation.y = direction.y;
   };
-  this.collectData = function(dataType) {
+  this.collectData = function(dataType) { // Собирает данные заданного типа и ложит в массив
     this.dataCollected = [...this.dataCollected, dataType]
   };
-  this.sendDataToEarth = function() {
+  this.sendDataToEarth = function() { // отправляет собранные данные и очищает массив
     this.dataCollected.length = 0;
   };
 }
@@ -43,28 +43,43 @@ function MarsRover(model, navigation) {
 const mySpacecraft = new Spacecraft('Ruslan Plane', 'Oil');
 const marsRover = new MarsRover('R1TU', {x: 0, y: 0});
 
-
-function MissionControl(missionName, launchDate) {
-      this.missionName = missionName;
-      this.launchDate = launchDate;
-      this.spaceCraft = mySpacecraft;
-      this.marsRover = marsRover;
-      this.initiateLaunch = function() {
-        this.spaceCraft.launch()
-      };
-      this.deployMarsRover = function(direction) {
-        this.marsRover.move(direction)
-      };
-      this.coorginateMission = function() {
-
-      };
-      this.monitorMissionProgress = function() {
-
-      };
+if(!mySpacecraft.isInSpace) {
+  mySpacecraft.launch()
+  console.log(mySpacecraft.checkFuel())
+  mySpacecraft.land('Mars')
+  console.log(mySpacecraft.checkFuel())
+  mySpacecraft.refuel(30)
+  marsRover.move({x: 30, y: 50})
+  marsRover.collectData('Tree')
+  marsRover.move({x: 40, y: 60})
+  marsRover.collectData('Gras')
+  console.log(mySpacecraft.checkFuel())
+  marsRover.sendDataToEarth(marsRover.dataCollected)
+  console.log(mySpacecraft.checkFuel())
 }
 
-const myMissionControl = new MissionControl('Go to Mars', '12.10.2024');
-myMissionControl
+
+
+// function MissionControl(missionName, launchDate) {
+//       this.missionName = missionName;
+//       this.launchDate = launchDate;
+//       this.spaceCraft = mySpacecraft;
+//       this.marsRover = marsRover;
+//       this.initiateLaunch = function() {
+//         this.spaceCraft.launch()
+//       };
+//       this.deployMarsRover = function(direction) {
+//         this.marsRover.move(direction)
+//       };
+//       this.coorginateMission = function(dataType) {
+//         this.marsRover.collectData(dataType)
+//       };
+//       this.monitorMissionProgress = function() {
+//         const name = this.spaceCraft.name;
+//         const fuelType = this.spaceCraft.fuelType;
+//         const fuelLevel = this.spaceCraft.fuelLevel;
+//       };
+// }
 
 
 
