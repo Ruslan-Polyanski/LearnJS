@@ -182,6 +182,50 @@ alert( usersMapped[0].id ) // 1
 alert( usersMapped[0].fullName ) // Вася Пупкин
 
 
+// Отсортировать пользователей по возрасту
+// Напишите функцию sortByAge(users), которая принимает массив объектов 
+// со свойством age и сортирует их по нему.
+
+let vasya2 = { name: "Вася", age: 25 };
+let petya2 = { name: "Петя", age: 30 };
+let masha2 = { name: "Маша", age: 28 };
+
+let arr5 = [ vasya2, petya2, masha2 ];
+
+function sortByAge(users) {
+  users.sort((a, b) => a.age - b.age)
+}
+
+sortByAge(arr5);
+
+// теперь: [vasya, masha, petya]
+alert(arr5[0].name); // Вася
+alert(arr5[1].name); // Маша
+alert(arr5[2].name); // Петя
+
+
+// Перемешайте массив
+// Напишите функцию shuffle(array), которая перемешивает 
+// (переупорядочивает случайным образом) элементы массива.
+// Многократные прогоны через shuffle могут привести к разным 
+// последовательностям элементов. Например:
+
+let arr6 = [1, 2, 3];
+
+function shuffle(arr6) {
+  
+}
+
+shuffle(arr6);
+// arr = [3, 2, 1]
+
+shuffle(arr6);
+// arr = [2, 1, 3]
+
+shuffle(arr6);
+// arr = [3, 1, 2]
+// ...
+
 
 
 
