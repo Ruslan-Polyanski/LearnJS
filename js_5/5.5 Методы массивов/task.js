@@ -136,10 +136,10 @@ let result = powerCalc.calculate("2 ** 3");
 alert( result ); // 8
 
 
+
 // Трансформировать в массив имён
 // У вас есть массив объектов user, и в каждом из них есть user.name. 
 // Напишите код, который преобразует их в массив имён.
-
 
 let vasya = { name: "Вася", age: 25 };
 let petya = { name: "Петя", age: 30 };
@@ -150,6 +150,7 @@ let users = [ vasya, petya, masha ];
 let names = users.reduce((acc, value) => [...acc, value.name], []);
 
 alert( names ); // Вася, Петя, Маша
+
 
 
 // Трансформировать в объекты
@@ -182,6 +183,7 @@ alert( usersMapped[0].id ) // 1
 alert( usersMapped[0].fullName ) // Вася Пупкин
 
 
+
 // Отсортировать пользователей по возрасту
 // Напишите функцию sortByAge(users), которая принимает массив объектов 
 // со свойством age и сортирует их по нему.
@@ -204,6 +206,7 @@ alert(arr5[1].name); // Маша
 alert(arr5[2].name); // Петя
 
 
+
 // Перемешайте массив
 // Напишите функцию shuffle(array), которая перемешивает 
 // (переупорядочивает случайным образом) элементы массива.
@@ -212,8 +215,8 @@ alert(arr5[2].name); // Петя
 
 let arr6 = [1, 2, 3];
 
-function shuffle(arr6) {
-  
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
 }
 
 shuffle(arr6);
@@ -228,5 +231,81 @@ shuffle(arr6);
 
 
 
+// Получить средний возраст
+// Напишите функцию getAverageAge(users), которая принимает массив объектов 
+// со свойством age и возвращает средний возраст.
+// Формула вычисления среднего арифметического значения: (age1 + age2 + ... + ageN) / N.
+
+let vasya5 = { name: "Вася", age: 25 };
+let petya5 = { name: "Петя", age: 30 };
+let masha5 = { name: "Маша", age: 29 };
+
+let arr10 = [ vasya5, petya5, masha5 ];
+
+function getAverageAge(users) {
+  let count = 0;
+
+  const num = users.reduce((acc, item) => {
+    count += 1;
+    return acc += item.age;
+  }, 0)
+
+  return num / count;
+}
+
+alert( getAverageAge(arr10) ); // (25 + 30 + 29) / 3 = 28
+
+
+
+// Оставить уникальные элементы массива
+// Пусть arr – массив строк.
+// Напишите функцию unique(arr), которая возвращает массив, 
+// содержащий только уникальные элементы arr.
+
+let strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", ":-O"
+];
+
+function unique(arr) {
+  const word = {};
+
+  arr.forEach(value => {
+    word[value] ?? (word[value] = true)
+  })
+
+  return Object.keys(word)
+}
+
+alert( unique(strings) ); // кришна, харе, :-O
+
+
+// Создайте объект с ключами из массива
+// Допустим, мы получили массив пользователей в виде {id:..., name:..., age:... }.
+// Создайте функцию groupById(arr), которая создаст из него объект с id 
+// в качестве ключа и элементами массива в качестве значений.
+
+let users3 = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
+
+let usersById = groupById(users3);
+
+function groupById(users) {
+  return users.reduce((acc, value) => {
+    return {...acc, [value.id]: value};
+  }, {})
+}
+
+/*
+// после вызова у нас должно получиться:
+
+usersById = {
+  john: {id: 'john', name: "John Smith", age: 20},
+  ann: {id: 'ann', name: "Ann Smith", age: 24},
+  pete: {id: 'pete', name: "Pete Peterson", age: 31},
+}
+*/
 
 
