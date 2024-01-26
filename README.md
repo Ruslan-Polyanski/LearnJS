@@ -57,7 +57,7 @@ Learning information about JS in learn.javascript.ru
  - 5.3 Строки
  - 5.4 Массивы
  - 5.5 Методы массивов
- - Перебираемые объекты
+ - 5.6 Перебираемые объекты
  - Map и Set
  - WeakMap и WeakSet
  - Object.keys, values, entries
