@@ -60,8 +60,8 @@ Learning information about JS in learn.javascript.ru
  - 5.5 Методы массивов
  - 5.6 Перебираемые объекты
  - 5.7 Map и Set
- 
- - WeakMap и WeakSet
+ - 5.8 WeakMap и WeakSet
+
  - Object.keys, values, entries
  - Деструктурирующее присваивание
  - Дата и время
