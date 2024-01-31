@@ -62,7 +62,7 @@ Learning information about JS in learn.javascript.ru
  - 5.7 Map и Set
  - 5.8 WeakMap и WeakSet
 
- - Object.keys, values, entries
+ - 5.9 Object.keys, values, entries
  - Деструктурирующее присваивание
  - Дата и время
  - Формат JSON, метод toJSON
