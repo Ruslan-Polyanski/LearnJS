@@ -1,7 +1,7 @@
 
 const obj = {
-  from: 1,
-  to: 11,
+  from: 0,
+  to: 10,
 };
 
 obj[Symbol.iterator] = function() {
@@ -29,6 +29,6 @@ obj[Symbol.iterator] = function() {
   }
 }
 
-for( let num of obj ) {
+for ( let num of obj ) {
   console.log(num)
 }
