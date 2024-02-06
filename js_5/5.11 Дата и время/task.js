@@ -94,6 +94,8 @@
 
 };
 
+
+
 // Последнее число месяца?
 // Напишите функцию getLastDayOfMonth(year, month), 
 // возвращающую последнее число месяца. Иногда это 30, 31 или даже февральские 28/29.
@@ -119,6 +121,85 @@
 
 }
 
+
+
+// Сколько сегодня прошло секунд?
+// Напишите функцию getSecondsToday(), 
+// возвращающую количество секунд с начала сегодняшнего дня.
+// Например, если сейчас 10:00, и не было перехода на зимнее/летнее время, то:
+// Функция должна работать в любой день, т.е. в ней не должно быть 
+// конкретного значения сегодняшней даты.
+
+() => {
+
+  const getSecondsToday = () => {
+      const dateNow = new Date();
+      const year = dateNow.getFullYear();
+      const month = dateNow.getMonth();
+      const day = dateNow.getDate();
+      const clearDate = new Date(year, month, day);
+      const resultTime = dateNow - clearDate;
+      return Math.round(resultTime/1000);
+  }
+
+  getSecondsToday() == 36000 // (3600 * 10)
+
+}
+
+
+
+// Сколько секунд осталось до завтра?
+// Создайте функцию getSecondsToTomorrow(), 
+// возвращающую количество секунд до завтрашней даты.
+// Например, если сейчас 23:00
+// P.S. Функция должна работать в любой день, 
+// т.е. в ней не должно быть конкретного значения сегодняшней даты.
+
+() => {
+
+  const getSecondsToTomorrow = () => {
+    const dateNow = new Date();
+
+    const hours = dateNow.getHours();
+    const minutes = dateNow.getMinutes();
+    const seconds = dateNow.getSeconds();
+
+    const nowSeconds = hours*60*60 + minutes*60 + seconds;
+
+    const fullSeconds = 60*60*24;
+
+    return fullSeconds - nowSeconds;
+
+  }
+
+  getSecondsToTomorrow() == 3600
+
+}
+
+
+
+// Форматирование относительной даты
+// Напишите функцию formatDate(date), форматирующую date по следующему принципу:
+// Если спустя date прошло менее 1 секунды, вывести "прямо сейчас".
+// В противном случае, если с date прошло меньше 1 минуты, вывести "n сек. назад".
+// В противном случае, если меньше часа, вывести "m мин. назад".
+// В противном случае, полная дата в формате "DD.MM.YY HH:mm". 
+// А именно: "день.месяц.год часы:минуты", всё в виде двух цифр, т.е. 31.12.16 10:00.
+
+() => {
+
+
+  
+  alert( formatDate(new Date(new Date - 1)) ); // "прямо сейчас"
+
+  alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
+  
+  alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
+  
+  // вчерашняя дата вроде 31.12.2016, 20:00
+  alert( formatDate(new Date(new Date - 86400 * 1000)) );
+
+}
 
 
 
