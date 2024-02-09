@@ -65,5 +65,4 @@ Learning information about JS in learn.javascript.ru
  - 5.10 Деструктурирующее присваивание
  
  - 5.11 Дата и время
- 
- - Формат JSON, метод toJSON
+ - 5.12 Формат JSON, метод toJSON
