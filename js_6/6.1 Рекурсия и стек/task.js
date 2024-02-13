@@ -230,9 +230,76 @@ console.log(factorial(5)); // 120
 }
 
 
+// Вывод односвязного списка в обратном порядке
+// Выведите односвязный список из предыдущего задания 
+// Вывод односвязного списка в обратном порядке.
+// Сделайте два решения: с использованием цикла и через рекурсию.
+
+() => {
+
+  let list = {
+    value: 1,
+    next: {
+      value: 2,
+      next: {
+        value: 3,
+        next: {
+          value: 4,
+          next: null
+        }
+      }
+    }
+  };
+
+  function printList(list) {
+    const arr = [];
+    let listItem = list;
+
+    while(listItem){
+      arr.push(listItem)
+      listItem = listItem.next;
+    }
+
+    arr.reverse()
+    
+    arr.forEach(item => console.log(item))
+
+  }
+
+  printList(list)
+
+}
 
 
+() => {
 
+  let list = {
+    value: 1,
+    next: {
+      value: 2,
+      next: {
+        value: 3,
+        next: {
+          value: 4,
+          next: null
+        }
+      }
+    }
+  };
+
+  function printList(list) {
+    const listItem = list;
+
+    if(listItem) {
+      printList(list.next)
+    }
+
+    console.log(listItem)
+  }
+
+  printList(list)
+
+}
 
 
 
