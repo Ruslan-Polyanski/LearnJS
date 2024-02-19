@@ -177,6 +177,104 @@
 
 
 
+// Фильтрация с помощью функции
+// У нас есть встроенный метод arr.filter(f) для массивов. 
+// Он фильтрует все элементы с помощью функции f. 
+// Если она возвращает true, то элемент добавится в возвращаемый массив.
+// Сделайте набор «готовых к употреблению» фильтров:
+// inBetween(a, b) – между a и b (включительно).
+// inArray([...]) – находится в данном массиве.
+// Они должны использоваться таким образом:
+// arr.filter(inBetween(3,6)) – выбирает только значения между 3 и 6 (включительно).
+// arr.filter(inArray([1,2,3])) – выбирает только элементы, совпадающие с одним из элементов массива
+
+() => {
+
+  function inBetween(one, two) {
+      return function(item) {
+        return one <= item && item <= two ? true : false;
+      }
+  }
+ 
+    function inArray(arr) {
+        return function(item) {
+          return arr.includes(item);
+        }
+    }
+    
+    let arr = [1, 2, 3, 4, 5, 6, 7];
+    
+    alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+    
+    alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+
+}
+
+
+
+// Сортировать по полю
+
+() => {
+
+  let users = [
+    { name: "John", age: 20, surname: "Johnson" },
+    { name: "Pete", age: 18, surname: "Peterson" },
+    { name: "Ann", age: 19, surname: "Hathaway" }
+  ];
+
+  // users.sort((a, b) => a.name > b.name ? 1 : -1);
+  // users.sort((a, b) => a.age > b.age ? 1 : -1);
+
+  function byField(property) {
+    return function(a, b) {
+      return a[property] > b[property] ? 1 : -1;
+    }
+  }
+
+  users.sort(byField('name'));
+  users.sort(byField('age'));
+
+}
+
+
+// Армия функций
+// Следующий код создаёт массив из стрелков (shooters).
+// Каждая функция предназначена выводить их порядковые номера.
+// Почему у всех стрелков одинаковые номера?
+// Почините код, чтобы он работал как задумано.
+
+() => {
+
+    function makeArmy() {
+      let shooters = [];
+    
+      for(let i = 0; i < 10; i++) {
+        let shooter = function() { // функция shooter
+          alert( i ); // должна выводить порядковый номер
+        };
+        shooters.push(shooter); // и добавлять стрелка в массив
+      }
+    
+      // ...а в конце вернуть массив из всех стрелков
+      return shooters;
+    }
+    
+    let army = makeArmy();
+    
+    // все стрелки выводят 10 вместо их порядковых номеров (0, 1, 2, 3...)
+    army[0](); // 10 от стрелка с порядковым номером 0
+    army[1](); // 10 от стрелка с порядковым номером 1
+    army[2](); // 10 ...и т.д.
+
+}
+
+
+
+
+
+
+
+
 
 
 
