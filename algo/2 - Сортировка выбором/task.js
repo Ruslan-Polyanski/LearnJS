@@ -1,30 +1,37 @@
 
-const arr = [98,75,40,88,26,33,97,34,8,17,14,29,77,36,89,1,31,5,100,
-             61,91,93,46,47,57,60,68,38,55,58,70,63,11,62,66,7,52,35,
-             28,18,30,59,42,20,72,90,96,37,13,9,24,43,10,21,49,39,16,
-             4,48,82,78,41,83,53,27,51,76,69,95,86,2,50,23,67,64,3,87,
-             92,80,84,79,73,65,12,19,25,94,81,85,15];
+const arr = [54, 83, 9, 93, 7, 2, 31, 8, 59, 90, 66, 100, 36, 86, 41, 82, 47, 
+             16, 10, 43, 64, 26, 60, 79, 29, 33, 46, 97, 15, 53, 91, 44, 61, 48, 
+             67, 27, 22, 95, 3, 76, 50, 13, 73, 99, 42, 80, 49, 39, 63, 32, 57, 
+             28, 94, 24, 84, 77, 40, 5, 96, 85, 72, 70, 87, 20, 35, 68, 11, 51, 
+             45, 74, 21, 14, 98, 78, 1, 37, 18, 65, 38, 92, 23, 89, 17, 56, 55, 75, 
+             69, 88, 6, 52, 62, 58, 4, 71, 30, 81, 19, 12, 34, 25];
 
 function sortNumbers(arr) {
-    const leng = arr.length;
-    const newArr = [];
+    const resultArr = [];
+    let copyArr = arr.slice();
 
-    let maxNumber = null;
-    let maxNumberIndex = null
+    function getSmollNumber(arr) {
+      let minNumber = arr[0];
+      let minIndex = 0;
 
-    for(let i = 0; i < leng; ++i) {
-
-      for(let j = i + 1; j < leng; ++j) {
-
-        
-
+      for (let i = 1; i < arr.length; ++i) {
+        if(arr[i] < minNumber) {
+          minNumber = arr[i];
+          minIndex = i;
+        }  
       }
 
-      newArr.push(maxNumber)
-      maxNumber = null;
+      return minIndex;
     }
 
-    return newArr;
+
+    for (let i = 0; i < arr.length; ++i) {
+      const minIndex = getSmollNumber(copyArr);
+      resultArr.push(copyArr[minIndex])
+      copyArr = [...copyArr.slice(0, minIndex), ...copyArr.slice(minIndex + 1, copyArr.length)]
+    }
+
+    return resultArr;
 }
 
 sortNumbers(arr)

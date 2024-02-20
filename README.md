@@ -70,8 +70,8 @@ Learning information about JS in learn.javascript.ru
 
  - 6.3 Область видимости переменных, замыкание
  - 6.4 Устаревшее ключевое слово "var"
+ - 6.5 Глобальный объект
 
- - 6.Глобальный объект
  - 6.Объект функции, NFE
  - 6.Синтаксис "new Function"
  - 6.Планирование: setTimeout и setInterval
