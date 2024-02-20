@@ -72,7 +72,8 @@ Learning information about JS in learn.javascript.ru
  - 6.4 Устаревшее ключевое слово "var"
  - 6.5 Глобальный объект
 
- - 6.Объект функции, NFE
+ - 6.6 Объект функции, NFE
+ 
  - 6.Синтаксис "new Function"
  - 6.Планирование: setTimeout и setInterval
  - 6.Декораторы и переадресация вызова, call/apply
