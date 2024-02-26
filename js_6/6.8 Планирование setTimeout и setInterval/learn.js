@@ -61,4 +61,45 @@ let timerId2 = setInterval(func|code, [delay], [arg1], [arg2]);
 // }
 
 
+() => {
+
+  const obj = {
+    name: 'obj',
+    func() {
+      console.log(this)
+      const myThis = this;
+      const myVar = 'context';
+      setTimeout(function() {
+        console.log(myVar);
+        (() => {
+          console.log(this)
+        })()
+      }, 1000)
+    }
+  }
+  
+  obj.func()
+
+}
+
+
+
+() => {
+
+  let start = Date.now();
+  let times = [];
+  
+  setTimeout(function run() {
+    times.push(Date.now() - start)
+  
+    if(start + 100 < Date.now()){
+      alert(times)
+    } else {
+      setTimeout(run);
+    }
+  })
+
+}
+
+
 
