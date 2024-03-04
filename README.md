@@ -76,5 +76,6 @@ Learning information about JS in learn.javascript.ru
  - 6.8 Планирование: setTimeout и setInterval
  - 6.9 Декораторы и переадресация вызова, call/apply
  
- - 6.Привязка контекста к функции
+ - 6.10 Привязка контекста к функции
+
  - 6.Повторяем стрелочные функции
