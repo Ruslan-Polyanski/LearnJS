@@ -378,7 +378,7 @@
           let timerId = null;
 
           return function() {
-            clearTimeout(timerId)
+            
             timerId = setTimeout(() => {
               f.call(this, ...arguments)
               clearTimeout(timerId)
@@ -436,22 +436,38 @@
         console.log(a)
       }
 
-      function throttle(f, ms) {
-        
-        return function() {
+          function throttle(func, ms) {
+            let isStart = false;
+            let myArgs = null;
+            let myThis = null;
+          
+            return function wrapp() {
+              if (isStart) {
+                myArgs = arguments;
+                myThis = this;
+              } else {
+                func.apply(this, arguments); 
+                isStart = true;
+                setTimeout(function() {
+                  isStart = false; 
+                  if (myArgs) {
+                    wrapp.apply(myThis, myArgs);
+                    myArgs = myThis = null;
+                  }
+                }, ms);
+              }
+            }
+          }
 
-        }
-      }
-      
-      let f1000 = throttle(f, 1000);
+      const f1000 = throttle(f, 1000);
       
       f1000(1); // показывает 1
       f1000(2); // (ограничение, 1000 мс ещё нет)
       f1000(3); // (ограничение, 1000 мс ещё нет)
-      // f1000(4);
-      // f1000(5);
-      // f1000(6);
-      // f1000(7);
+      f1000(4); 
+      f1000(5);
+      f1000(6);
+      f1000(7);
       
       // когда 1000 мс истекли ...
       // ...выводим 3, промежуточное значение 2 было проигнорировано
