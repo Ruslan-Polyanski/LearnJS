@@ -78,3 +78,4 @@ Learning information about JS in learn.javascript.ru
  
  - 6.10 Привязка контекста к функции
  - 6.11 Повторяем стрелочные функции
+
