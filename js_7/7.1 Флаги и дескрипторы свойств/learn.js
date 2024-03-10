@@ -250,3 +250,52 @@
   user
 
 }
+
+
+
+() => {
+
+  const user = {
+    name: 'Lisa'
+  }
+
+  Object.seal(user)
+  // Запрещает добавлять/удалять свойства. Устанавливает configurable: false 
+  // для всех существующих свойств.
+
+  Object.getOwnPropertyDescriptors(user)
+
+}
+
+
+
+() => {
+
+  const user = {
+    name: "lola"
+  }
+
+  Object.freeze(user)
+  // Запрещает добавлять/удалять/изменять свойства. Устанавливает configurable: false, 
+  // writable: false для всех существующих свойств.
+
+  user.name = 'Lisa';
+
+}
+
+
+
+() => {
+
+  Object.isExtensible(obj)
+  // Возвращает false, если добавление свойств запрещено, иначе true.
+
+  Object.isSealed(obj)
+  // Возвращает true, если добавление/удаление свойств запрещено и для всех 
+  // существующих свойств установлено configurable: false.
+
+  Object.isFrozen(obj)
+  // Возвращает true, если добавление/удаление/изменение свойств запрещено, 
+  // и для всех текущих свойств установлено configurable: false, writable: false.
+
+}
