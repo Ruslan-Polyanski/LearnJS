@@ -103,12 +103,21 @@
 
 () => {
 
-  function User(name, age) {
+  function User(name, birthday) {
     this.name = name;
-    this.age = age;
+    this.birthday = birthday;
+
+    Object.defineProperty(this, 'age', {
+      get() {
+        return new Date().getFullYear() - this.birthday.getFullYear();
+      }
+    })
   }
 
-  let john = new User('John', )
+  let john = new User('John', new Date(1984, 4, 15))
+
+  john.birthday
+  john.age
 
 }
 
