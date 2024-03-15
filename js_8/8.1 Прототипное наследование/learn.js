@@ -139,7 +139,28 @@
   Object.keys(rabbit) // Выведет только jumps
 
   for (let key in rabbit) {
-    console.log(key)
+    console.log(key) // Выведет все ключи и унаследованные тоже
+  }
+
+}
+
+
+
+() => {
+
+  const animal = {
+    eats: true
+  };
+
+  const rabbit = {
+    jumps: true,
+    __proto__: animal,
+  }
+
+  for (let key in rabbit) {
+    if(rabbit.hasOwnProperty(key)) {
+      console.log(key) // Выведет только совбственные ключи оъбекта
+    }
   }
 
 }
