@@ -39,22 +39,22 @@
   // pockets.glasses или через head.glasses? При необходимости составьте 
   // цепочки поиска и сравните их.
 
-  let head = {
+  const head = {
     glasses: 1
   };
   
-  let table = {
+  const table = {
     pen: 3,
     __proto__: head,
   };
   
-  let bed = {
+  const bed = {
     sheet: 1,
     pillow: 2,
     __proto__: table,
   };
   
-  let pockets = {
+  const pockets = {
     money: 2000,
     __proto__: bed,
   };
@@ -64,5 +64,92 @@
 
   console.log( pockets.glasses ) // Длинная цепочка
   console.log( head.glasses ) // Короткая цепочка
+
+}
+
+
+
+() => {
+
+  // Куда будет произведена запись?
+  // Объект rabbit наследует от объекта animal.
+  // Какой объект получит свойство full при вызове 
+  // rabbit.eat(): animal или rabbit?
+
+  const animal = {
+    eat() {
+      this.full = true;
+    }
+  };
+
+  const rabbit = {
+    __proto__: animal
+  };
+
+  rabbit.eat(); // rabbit.full = true
+
+}
+
+
+
+() => {
+
+  // Почему наедаются оба хомяка?
+  // У нас есть два хомяка: шустрый (speedy) и ленивый (lazy); 
+  // оба наследуют от общего объекта hamster.
+  // Когда мы кормим одного хомяка, второй тоже наедается. 
+  // Почему? Как это исправить?
+  
+  const hamster = {
+    stomach: [],
+  
+    eat(food) {
+      this.stomach.push(food);
+    }
+  };
+  
+  const speedy = {
+    __proto__: hamster
+  };
+  
+  const lazy = {
+    __proto__: hamster
+  };
+  
+  // Этот хомяк нашёл еду
+  speedy.eat("apple");
+  console.log( speedy.stomach ); // apple
+  
+  // У этого хомяка тоже есть еда. Почему? Исправьте
+  console.log( lazy.stomach ); // apple
+
+}
+
+
+
+() => {
+
+    // Для решения задачи ниже, нужно перенести массив stomach внуть 
+  // каждого хомяка
+
+  const hamster = {
+    eat(food) {
+      this.stomach.push(food);
+    }
+  };
+  
+  const speedy = {
+    stomach: [],
+    __proto__: hamster
+  };
+  
+  const lazy = {
+    stomach: [],
+    __proto__: hamster
+  };
+
+  speedy.eat("apple");
+  console.log( speedy.stomach );
+  console.log( lazy.stomach ); 
 
 }

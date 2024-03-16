@@ -88,6 +88,6 @@ Learning information about JS in learn.javascript.ru
  ## Прототипы, наследование
 
  - 8.1 Прототипное наследование
- - F.prototype
+ - 8.2 F.prototype
  - Встроенные прототипы
  - Методы прототипов, объекты без свойства __proto__
