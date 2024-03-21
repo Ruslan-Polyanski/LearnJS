@@ -30,3 +30,22 @@
   rabbit.name === 'rabbit' // true
 
 }
+
+
+
+() => {
+
+  const animal = {
+    name: 'animal'
+  }
+
+  const obj = {
+    name: 'obj',
+    __proto__: animal
+  }
+
+  const cloneObj = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj))
+
+  console.log(cloneObj)
+
+}
