@@ -1,4 +1,5 @@
-# LearnJS
+
+## LearnJS
 
 Learning information about JS in learn.javascript.ru
 
@@ -105,3 +106,4 @@ Learning information about JS in learn.javascript.ru
   ## Подготовка к отчету
   
   - Таймер на прототипах
+  - Объект с прототипом массива
