@@ -41,5 +41,4 @@
 
   Rabbit.prototype.__proto__ === Animal.prototype // true
 
-
 }
