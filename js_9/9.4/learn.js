@@ -79,3 +79,70 @@
 }
 
 
+
+() => {
+
+  function User(name) {
+    this.name = name;
+  }
+
+  User.prototype.sayName = function() {
+    return this.name;
+  }
+
+  const user = new User('Ilona');
+
+  console.dir(user)
+
+  for( const kay in user ) {
+    console.log(kay)
+  }
+
+}
+
+
+
+() => {
+//Классы всегда используют use strict
+  class User {
+    constructor(name) {
+      this.name = name;
+    }
+
+    sayName() {
+      return this.name;
+    }
+  }
+
+  const user = new User('Lisa');
+
+  console.dir(user)
+
+  Object.getOwnPropertyDescriptors(User.prototype)
+
+  for( const key in user) {
+    console.log(key)
+  }
+
+}
+
+
+
+() => {
+
+  class User{
+    name = 'Ilona';
+
+    sayName() {
+      return this.name;
+    }
+  }
+
+  const user = new User();
+
+  console.dir(user)
+  console.log(user.sayName())
+
+}
+
+
