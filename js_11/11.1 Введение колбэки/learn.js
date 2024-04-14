@@ -95,7 +95,7 @@
     document.head.append(script);
   }
 
-  
+
   loadScript('1.js', step1);
 
   function step1(error, script) {
@@ -120,6 +120,7 @@
     if (error) {
       handleError(error);
     } else {
+      alert('...')
       // ...и так далее, пока все скрипты не будут загружены (*)
     }
   };
