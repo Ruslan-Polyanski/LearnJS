@@ -110,7 +110,7 @@ Learning information about JS in learn.javascript.ru
  ## Промисы, async/await
 
  - 11.1 Введение: колбэки
- - Промисы
+ - 11.2 Промисы
  - Цепочка промисов
  - Промисы: обработка ошибок
  - Promise API
@@ -118,4 +118,6 @@ Learning information about JS in learn.javascript.ru
 
 
   ## Подготовка к отчету
+
+  ts классы
   
