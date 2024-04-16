@@ -6,18 +6,26 @@
   // который должен вернуть форматированную строку в формате (copy) <file-name> (<size> bytes). 
   // (copy) должно выводиться только в том случае, если файл является копией другого файла.
 
+  type TFile = {
+    name: string;
+    size: number;
+  }
+
   class CustomFile {
 
     name: string;
-    size: number
+    size: number;
+    private isCopy: boolean;
 
-    constructor({name: string, size: number}) {
-      this.name = name;
-      this.size = size;
+    constructor(file: TFile) {
+      this.name = file.name;
+      this.size = file.size;
+      this.isCopy = file instanceof CustomFile;
     }
 
-    toString() {
-      return `${this.name} (${this.size})`;
+    toString(): string {
+      const copy = this.isCopy ? '(copy) ' : '';
+      return `${copy}${this.name} (${this.size} bytes)`;
     }
 
   }
