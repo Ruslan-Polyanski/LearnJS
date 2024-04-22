@@ -130,7 +130,10 @@
         }
       }
 
-      [copyArr[i], copyArr[indexMinValue]] = [copyArr[indexMinValue], copyArr[i]];
+      if(i !== indexMinValue) {
+        [copyArr[i], copyArr[indexMinValue]] = [copyArr[indexMinValue], copyArr[i]];
+      }
+
     }
 
 
