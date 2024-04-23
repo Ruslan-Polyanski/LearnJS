@@ -114,9 +114,10 @@ Learning information about JS in learn.javascript.ru
 
  - 11.3 Цепочка промисов
  - 11.4 Промисы: обработка ошибок
- 
- - Promise API
+ - 11.5 Promise API
  - Промисификация
+ - Микрозадачи
+ - Async/await
 
 
   ## Подготовка к отчету
