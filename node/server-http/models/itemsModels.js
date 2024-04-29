@@ -49,7 +49,7 @@ export const itemsModels = {
   },
   deleteItem: function(id) {
     return new Promise((resolve, reject) => {
-      db.run('SELETE FROM items WHERE id=?', [id], (error) => {
+      db.run('DELETE FROM items WHERE id=?', [id], (error) => {
         if(error) {
           reject(error)
         } else {
