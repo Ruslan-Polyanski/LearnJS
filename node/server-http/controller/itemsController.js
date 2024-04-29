@@ -73,3 +73,15 @@ export const updateItem = async (request, response, id) => {
     response.end(`Error: ${error.message}`)
   }
 }
+
+export const deleteItem = async (request, response, id) => {
+  try {
+    await itemsModels.deleteItem(id)
+    response.statusCode = 200;
+    response.setHeader('Content-type', 'application/json')
+    response.end(JSON.stringify('OK'))
+  } catch (error) {
+    response.statusCode = 500;
+    response.end(`Error: ${error.message}`)
+  }
+}

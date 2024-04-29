@@ -1,5 +1,5 @@
 import http from 'http';
-import { getItems, getItemsById, createItem, updateItem } from './controller/itemsController.js';
+import { getItems, getItemsById, createItem, updateItem, deleteItem } from './controller/itemsController.js';
 
 const server = http.createServer(async (request, response) => {
   const url = new URL(request.url, `http://${request.headers.host}`);
@@ -16,6 +16,9 @@ const server = http.createServer(async (request, response) => {
   } else if(request.method === 'PUT' && pathname.startsWith('/items/')) {
     const id = pathname.split('/')[2];
     await updateItem(request, response, id)
+  } else if (request.method === 'DELETE' && pathname.startsWith('/items/')) {
+    const id = pathname.split('/')[2];
+    await deleteItem(request, response, id)
   } else {
     response.statusCode = 404;
     response.end('404')
