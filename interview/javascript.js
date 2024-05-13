@@ -50,6 +50,7 @@
       // {...user}
       // structuredClone()
       // lodash _cloneDeep(obj)
+      // Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptor())
 
     // 21. Сборщик мусора, Внутренние алгоритмы работы
 
@@ -191,6 +192,55 @@
         console.log(i); // 3 3 3
       }, 1000);
     }
+
+
+    --- Прототипы
+
+
+    () => {
+
+
+      function SomeFuncFirst(FirstVar) {
+        this.FirstVar = FirstVar;
+        this.SecondVar = FirstVar;
+
+        var a = 'var';
+
+        const c = 1;
+
+        this.getA = function() {
+          (function a() {
+            console.log(a)
+            console.log(c)
+            console.log(this.SecondVar)
+          })();
+
+          return a;
+        }
+
+      }
+
+
+      SomeFuncFirst.prototype.consoleLogTextFirst = function() {
+        console.log('text')
+      }
+
+      function SomeFuncSecond(firstVar, SecondVar) {
+        SomeFuncFirst.call(this, firstVar)
+        this.SecondVar = SecondVar;
+      }
+
+      SomeFuncSecond.prototype = Object.create(SomeFuncFirst.prototype);
+      SomeFuncSecond.prototype.constructor = SomeFuncSecond;
+
+      const mySomeFunc = new SomeFuncSecond('firstVar', 'SecondVar')
+      console.log(mySomeFunc.getA())
+      console.log(mySomeFunc.firstVar)
+      console.log(mySomeFunc.SecondVar)
+
+    }
+
+
 
 
 
