@@ -140,4 +140,40 @@
 
 
 
+() => {
+
+  class Thenable {
+    constructor(str) {
+      this.str = str;
+    }
+
+    then(resolve, reject) {
+      alert('resolve')
+
+      setTimeout(() => resolve(this.str + ' - Hallo!!!'))
+    }
+  }
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('My string'), 0)
+  })
+
+  promise.then(result => {
+    return new Thenable('Ilona')
+  }).then(result => console.log(result))
+
+}
+
+
+() => {
+
+  const promise = new Promise((res, rej) => {
+    res(123)
+  })
+
+  promise.then(console.log).then(val => val + 1).then(console.log)
+
+}
+
+
 
