@@ -146,30 +146,127 @@
 
     --- Промисы:
 
-    console.log('start');
+    () => {
 
-    const promise1 = Promise.resolve().then(() => {
-      console.log('promise1');
-      const timer2 = setTimeout(() => {
-        console.log('timer2')
+      console.log('start');
+
+      const promise1 = Promise.resolve().then(() => {
+        console.log('promise1');
+        const timer2 = setTimeout(() => {
+          console.log('timer2')
+        }, 0)
+      });
+  
+      const timer1 = setTimeout(() => {
+        console.log('timer1')
+        const promise2 = Promise.resolve().then(() => {
+          console.log('promise2')
+        })
       }, 0)
-    });
+  
+      console.log('end');
+  
+      // start
+      // end
+      // promise1
+      // timer1
+      // promise2
+      // timer2
 
-    const timer1 = setTimeout(() => {
-      console.log('timer1')
-      const promise2 = Promise.resolve().then(() => {
-        console.log('promise2')
+    }
+
+
+
+    () => {
+
+      function successFetch() {
+        return new Promise((res, rej) => {
+          console.log('succ')
+          res('succ')
+        })
+      }
+
+      function faildeFetch() {
+        return new Promise((res, rej) => {
+          console.log('error')
+          rej('error')
+        })
+      }
+
+      new Promise((res, rej) => res())
+          .then(successFetch) //'succ'
+          .then(faildeFetch) // 'error'
+          .finally((item) => console.log(1 + 2)) // 3
+          .catch((err) => {
+            console.log(err) //'error'
+          })
+          .finally((item) => console.log(3 + 2)) // 5
+    }
+
+
+    () => {
+
+      Promise.reject('1')
+          .then(
+            value => value + '2',
+            value => value + '3'
+          )
+          .catch(value => value + '4')
+          .catch(value => value + '5')
+          .then(value => value + '6')
+          .then('7')
+          .then(value => value + '8')
+          .finally(value => value + '9')
+          .then(value => console.log(value)) // NaN
+
+    }
+
+
+    () => {
+
+      try {
+        Promise.resolve(1).then(() => {
+            throw new Error('lox')
+        })
+      } catch (error) {
+        console.log('error :)')
+      }
+
+    }
+
+
+
+    () => {
+
+      const promise1 = new Promise((res) => {
+        console.log(0)
+        setTimeout(() => {
+          res()
+        }, 0)
       })
-    }, 0)
 
-    console.log('end');
+      promise1
+        .then(() => {
+          console.log(1)
+        })
+        .then(() => {
+          console.log(2)
+        })
 
-    // start
-    // end
-    // promise1
-    // timer1
-    // promise2
-    // timer2
+      promise1
+        .then(() => {
+          console.log(4)
+        })
+        .then(() => {
+          console.log(5)
+        }
+        )
+
+      promise1.then(
+        console.log(6)
+      )
+
+    } 
 
 
     --- Замыкание:
