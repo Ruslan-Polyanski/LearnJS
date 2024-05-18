@@ -70,6 +70,7 @@
 }
 
 
+
 () => {
 
   loadScript('script-1', (error, script) => {
@@ -87,6 +88,7 @@
   })
 
 }
+
 
 
 () => {
@@ -110,6 +112,7 @@
   }
 
 }
+
 
 
 () => {
@@ -165,6 +168,7 @@
 }
 
 
+
 () => {
 
   const promise = new Promise((res, rej) => {
@@ -172,6 +176,96 @@
   })
 
   promise.then(console.log).then(val => val + 1).then(console.log)
+
+}
+
+
+
+() => {
+
+  window.addEventListener('unhandledrejection', (event) => {
+    alert('You have a lot of problems :)')
+    console.log(event.promise)
+    console.log(event.reason)
+  })
+
+  new Promise((res, rej) => {
+    throw new Error('I mistake')
+  })
+
+}
+
+
+
+() => {
+
+  const result = Promise.all([
+                    Promise.resolve(1),
+                    Promise.resolve(2),
+                    Promise.resolve(3)
+                  ]);
+
+  result.then(res => console.log(res), rej => console.log(rej))   
+  
+}
+
+
+
+() => {
+
+  const result = Promise.all([
+    Promise.resolve(1),
+    Promise.reject(2),
+    Promise.resolve(3)
+  ]);
+
+  result.then(res => console.log(res), rej => console.log(rej))
+
+}
+
+
+
+() => {
+
+  const result = Promise.allSettled([
+    Promise.resolve(1),
+    Promise.reject(new Error('I mistake')),
+    Promise.resolve(3)
+  ]);
+  
+  result.then(console.log)
+
+}
+
+
+
+() => {
+
+  const result = Promise.race([
+    new Promise(res => setTimeout(() => {
+      res(1)
+    }, 3000)),
+    Promise.reject(new Error('I mistake')),
+    Promise.resolve(3)
+  ])
+
+  result.then(res => console.log('I firsth', res), rej => console.log('I second', rej))
+
+}
+
+
+
+() => {
+
+  const result = Promise.any([
+    // new Promise(res => setTimeout(() => {
+    //   res(1)
+    // }, 3000)),
+    Promise.reject(new Error('I mistake')),
+    // Promise.resolve(3)
+  ])
+
+  result.then(console.log, console.log)
 
 }
 
