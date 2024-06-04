@@ -1,23 +1,27 @@
 
-if(!Promise.all) {
+if(!Promise.allSettled) {
 
-  Promise.all = function (iterable) {
-    const result = Array.from(iterable);
-    let counter = 0;
+  Promise.allSettled = function (iterable) {
+    const result = Array.from(iterable)
+    let count = 0;
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       result.forEach((item, index, arr) => {
-        item = Promise.resolve(item);
+        item = Promise.resolve(item)
         item.then(res => {
-          arr[index] = res;
-          ++counter === 3 ? resolve(result) : null;
-        }).catch(err => reject(err))    
+          arr[index] = {status: 'fulfilled', value: res}
+          ++count === 3 ? resolve(result) : null
+        }).catch(err => {
+          arr[index] = {status: 'rejected', reason: err}
+          ++count === 3 ? resolve(result) : null
+        })
       })
     })
+
   }
 
-  
-  Promise.all([
+
+  Promise.allSettled([
     new Promise((resolve, reject) => {
       setTimeout(() => resolve(1), 1000)
     }),
@@ -25,16 +29,16 @@ if(!Promise.all) {
     3
   ]).then(res => console.log(res));
 
-  Promise.all([
+  Promise.allSettled([
     new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
     new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
     new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
   ]).then(res => console.log(res));
 
-  Promise.all([
+  Promise.allSettled([
     new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
     new Promise((resolve, reject) => setTimeout(() => reject(new Error("Ошибка!")), 2000)),
     new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
-  ]).catch(err => console.log(err));
+  ]).then(res => console.log(res)).catch(err => console.log(err));
 
 }
