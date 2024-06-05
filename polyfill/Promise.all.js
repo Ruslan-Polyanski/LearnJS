@@ -10,7 +10,7 @@ if(!Promise.all) {
         item = Promise.resolve(item);
         item.then(res => {
           arr[index] = res;
-          ++counter === 3 ? resolve(result) : null;
+          ++counter === result.length ? resolve(result) : null;
         }).catch(err => reject(err))    
       })
     })
