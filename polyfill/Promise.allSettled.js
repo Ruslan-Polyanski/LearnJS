@@ -10,10 +10,10 @@ if(!Promise.allSettled) {
         item = Promise.resolve(item)
         item.then(res => {
           arr[index] = {status: 'fulfilled', value: res}
-          ++count === 3 ? resolve(result) : null
+          ++count === result.length ? resolve(result) : null
         }).catch(err => {
           arr[index] = {status: 'rejected', reason: err}
-          ++count === 3 ? resolve(result) : null
+          ++count === result.length ? resolve(result) : null
         })
       })
     })

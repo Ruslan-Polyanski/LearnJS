@@ -3,7 +3,8 @@ if(!Promise.race) {
 
   Promise.race = function (iterable) {
     return new Promise((resolve, reject) => {
-      for(const item of iterable) {
+      for(let item of iterable) {
+        item = Promise.resolve(item)
         item.then(res => resolve(res)).catch(err => reject(err))
       }
     })
