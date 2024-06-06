@@ -147,3 +147,129 @@ console.log(generator.next().value); // 282475249
 console.log(generator.next().value); // 1622650073
 
 }
+
+
+
+() => {
+
+  const obj = {
+    first: 1,
+    last: 10,
+
+    [Symbol.iterator]: function () {
+      return {
+        a: this.first,
+        b: this.last,
+        next: function() {
+          if(this.a <= this.b) {
+            return {value: this.a++, done: false}
+          } else {
+            return {done: true}
+          }
+        }
+      }
+    }
+  }
+
+  console.log([...obj])
+
+}
+
+
+
+() => {
+
+  const obj = {
+    first: 1,
+    last: 10,
+    [Symbol.iterator]: function* () {
+        for(let i = this.first; i <= this.last; i++) {
+          yield i;
+        }
+    }
+  }
+
+  console.log([...obj])
+
+}
+
+
+
+() => {
+
+  function* getItem(start, end) {
+    for(let i = start; i <= end; ++i) yield i;
+  }
+
+  function* parentGenerator() {
+    yield* getItem(10, 29)
+    yield* getItem(190, 200)
+    yield* getItem(300, 310)
+  }
+
+  console.log([...parentGenerator()])
+
+}
+
+
+
+() => {
+
+  function* generator() {
+    const one = yield 'Are you Ruslan ?';
+    console.log(one)
+
+    const two = yield 'Are you Arianna ?';
+    console.log(two)
+
+    const three = yield 'Are you Lisa';
+    console.log(three)
+
+    return false;
+  }
+
+  const genObj = generator();
+
+  console.log(genObj.next())
+  console.log(genObj.next('Yes'))
+  console.log(genObj.next('No'))
+  console.log(genObj.next('No'))
+
+}
+
+
+
+() => {
+
+  function* generator() {
+    try {
+      yield 'My coude'
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const gen = generator();
+    gen.next()
+
+  gen.throw(new Error('my mistake'))
+
+}
+
+
+() => {
+
+  function* generator() {
+      yield 'My coude'
+  }
+
+  const gen = generator();
+    gen.next()
+
+    try {
+      gen.throw(new Error('my mistake'))
+    } catch(error) {
+       console.log(error)
+    }
+
+}
