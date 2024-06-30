@@ -45,3 +45,38 @@
 }
 
 
+
+() => {
+
+// Сколько будет логов и какие значения они примут?
+
+  function outerFunction(x) {
+    let outerVar = x;
+    console.log("Log 1:", outerVar);
+
+    return function innerFunction(y, callback) {
+      let innerVar = y;
+      console.log("Log 2:", outerVar + innerVar);
+
+      callback(() => {
+        outerVar += innerVar;
+        console.log("Log 3:", outerVar);
+      });
+    };
+  }
+
+  const myCallback = (cb) => {
+    cb();
+    console.log("Log 4:", "Callback executed");
+  };
+
+  const resultFunction = outerFunction(5);
+  resultFunction(3, myCallback);
+
+  ((z) => {
+    console.log("Log 5:", z);
+  })(10);
+
+}
+
+

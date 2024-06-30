@@ -273,3 +273,46 @@ console.log(generator.next().value); // 1622650073
     }
 
 }
+
+
+
+// () => {
+
+//   const obj = {
+//     first: 1,
+//     last: 9,
+
+//     [Symbol.iterator]: function () {
+//       return {
+//         first: this.first,
+//         last: this.last,
+//         next: function() {
+//           if(this.first <= this.last) {
+//             return {value: this.first++, done: false}
+//           }
+//           return {done: true}
+//         }
+//       }
+//     }
+//   }
+
+//   console.log([...obj])
+
+// }
+
+
+// () => {
+
+//   const obj = {
+//     first: 1,
+//     last: 9,
+//     [Symbol.iterator]: function* () {
+//       for(let i = this.first; i <= this.last; ++i) {
+//         yield i;
+//       }
+//     }
+//   }
+
+//   console.log([...obj])
+
+// }
