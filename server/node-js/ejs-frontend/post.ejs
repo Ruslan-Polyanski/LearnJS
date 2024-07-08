@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+<body>
+  <div>
+    <%- include('./partials/nav.ejs') %>
+  </div>
+  <article>
+    <div class="info">
+      <span><%= post.date || 'not date' %></span>
+      <span><%= post.author %></span>
+    </div>
+  </article>
+  <h1><%= post.title %></h1>
+  <p>
+    <%= post.text %>
+  </p>
+</body>
+</html>

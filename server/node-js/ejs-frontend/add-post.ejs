@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+<body>
+  <div>
+    <%- include('./partials/nav.ejs') %>
+  </div>
+  <h1>Эта страница добавления поста</h1>
+  <form method="post" action="/add-post">
+    <div>
+      <label>
+        Post title
+        <input type="text" name="title">
+      </label>
+      <label>
+        Post author
+        <input type="text" name="author">
+      </label>
+    </div>
+    <div>
+      <label>
+        Post text
+        <textarea name="text"></textarea>
+      </label>
+    </div>
+    <button>Отправить пост</button>
+  </form>
+</body>
+</html>
