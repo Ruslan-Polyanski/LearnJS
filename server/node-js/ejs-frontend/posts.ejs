@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+<body>
+  <div>
+    <%- include('./partials/nav.ejs') %>
+  </div>
+  <h1>Все посты блога</h1>
+  <% if(posts.length) { %>
+    <% posts.forEach(({ id, text, title, date, author }) => { %>
+      <article>
+        <div><a href="/posts/<%= id %>"><%= title %></a></div>
+        <p><%= text %></p>
+        <div class="info">
+          <span><%= date %></span>
+          <span><%= author %></span>
+        </div>
+      </article>
+    <% }) %>
+  <% } %>
+</body>
+</html>
