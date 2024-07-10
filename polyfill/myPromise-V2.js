@@ -3,6 +3,10 @@ class MyPromise {
   constructor(cb) {
     this._state = "pending";
     this._result = undefined;
+    this._queueMicrotask = {
+      res: [],
+      rej: [],
+    }
 
     if(cb) {
       if(typeof cb === 'function') {
@@ -24,6 +28,7 @@ class MyPromise {
     if(this._state === "pending") {
       this._state = "fullfield";
       this._result = value;
+      this._queueMicrotask.res.forEach(res => res(value))
     }
   }
 
@@ -31,23 +36,58 @@ class MyPromise {
     if(this._state === "pending") {
       this._state = "rejected";
       this._result = error;
+      this._queueMicrotask.rej.forEach(rej => rej(error))
     }
   }
 
   then(res, rej) {
-    return new MyPromise((res, rej) => {
+
+    return new MyPromise((resolve, reject) => {
+
+      if(this._state === "pending") {
+        if(typeof res === 'function') {
+          this._queueMicrotask.res.push(() => {
+            try {
+              const newResult = res(this._result);
+              resolve(resolve)
+            } catch(error) {
+              reject(error)
+            }
+          })
+        }
+
+        if(typeof rej === 'function') {
+          this._queueMicrotask.rej.push(() => {
+            try {
+              const newResult = rej(this._result);
+              reject(newResult)
+            } catch(error) {
+              reject(error)
+            }
+          })
+        }
+      } 
 
       if(typeof res === "function" && this._state === "fullfield") {
-        
-      }
-
+          try {
+            const newResult = res(this._result);
+            resolve(resolve)
+          } catch(error) {
+            reject(error)
+          }
+      } 
+  
       if(typeof rej === "function" && this._state === "rejected") {
-        
+          try {
+            const newResult = rej(this._result);
+            reject(newResult)
+          } catch(error) {
+            reject(error)
+          }
       }
-
-
 
     })
+
   }
 
   catch(rej) {
@@ -58,7 +98,9 @@ class MyPromise {
 
 
 const promise = new MyPromise((resolve, reject) => {
-  resolve(1)
+    setTimeout(() => {
+      reject('Errorrrrrrrrrr')
+    }, 3000)
 })
 
-promise.then()
+promise.then(res => res, err => err).then(null, err => err).catch(err => console.log())
