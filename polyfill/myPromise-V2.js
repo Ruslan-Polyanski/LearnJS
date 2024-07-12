@@ -99,8 +99,8 @@ class MyPromise {
 
 const promise = new MyPromise((resolve, reject) => {
     setTimeout(() => {
-      reject('Errorrrrrrrrrr')
+      resolve('Errorrrrrrrrrr')
     }, 3000)
 })
 
-promise.then(res => res, err => err).then(null, err => err).catch(err => console.log())
+promise.then(result => console.log(result))
