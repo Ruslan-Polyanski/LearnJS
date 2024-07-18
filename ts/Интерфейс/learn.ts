@@ -140,3 +140,79 @@
 }
 
 
+() => {
+
+  interface IBeep {
+    sayBeep: () => string;
+  }
+
+  interface IBoop {
+    sayBoop: () => string;
+  }
+
+  class Boom implements IBeep, IBoop {
+    sayBeep: () => 'good';
+    sayBoop: () => 'geed';
+  }
+
+  const Bo = new Boom();
+  Bo.sayBeep()
+
+}
+
+
+() => {
+
+  interface ICalc {
+    sum: (num1: number, num2: number) => number
+  }
+
+  class Summa implements ICalc {
+    sum(num1, num2) {
+      return num1 + num2;
+    }
+
+    multiply(num1: number, num2: number) {
+      return num1 + num2;
+    }
+  }
+
+  const calck = new Summa();
+  calck.sum(2, 3)
+
+}
+
+
+() => {
+
+  interface ICalculate {
+    sum: (num1: number, num2: number ) => number;
+  }
+  
+  class Summator implements ICalculate {
+    sum (num1: string, num2: string) { return num1 + num2 };
+  }
+
+}
+
+
+() => {
+
+  interface ICalculate {
+    sum: (num1: number, num2: number) => number;
+    multiply? : (num1: number, num2: number) => number;
+  }
+
+  class Summator implements ICalculate {
+    sum (num1: number, num2: number) { 
+      return num1 + num2; 
+    }
+  }
+
+  const calculator = new Summator();
+  calculator.sum(2,3) // 5
+  calculator.multiply(2,3)
+
+}
+
+

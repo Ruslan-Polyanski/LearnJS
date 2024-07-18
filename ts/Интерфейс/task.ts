@@ -1,8 +1,6 @@
 
 () => {
 
-  // Задание
-
   // Вам дан интерфейс IVehicle. Задача состоит в том, чтобы на основе 
   // этого интерфейса реализовать класс Car, который будет иметь метод 
   // calcFuelNeeded, принимающий расстояние в километрах и возвращающий 
@@ -96,6 +94,49 @@
   // console.log(superMan.guessWho('bird')); // "It's a bird?";
   // console.log(superMan.guessWho('plane')); //"It's a plane?";
   // console.log(superMan.guessWho('superman')); //"It's a superman!";
+
+}
+
+
+
+() => {
+
+  // С помощью предоставленного интерфейса IPhonebook и типа Entry 
+  // реализуйте класс Phonebook, который представляет телефонный справочник 
+  // со следующими свойствами:
+
+  // entries — база данных, объект, записи в котором представляют собой 
+  // имена в качестве ключей и телефоны в качестве значений. 
+  // Свойство должно быть неизменяемым и доступным только для чтения
+  // get — метод, возвращающий телефон по имени
+  // set — метод, записывающий имя и телефон в справочник
+
+  type Entry = {
+    [key: string]: number
+  };
+  
+  interface IPhonebook {
+    get(key: string): number | null
+    set(key: string, value: number): void
+  }
+  
+  class Phonebook implements IPhonebook {
+    private readonly entries: Entry = {};
+
+    set(key: string, value: number): void {
+      this.entries[key] = value;
+    }
+
+    get(key: string): number | null {
+      return this.entries[key] || null;
+    }
+
+  }
+
+  const myNote = new Phonebook();
+  myNote.set('help', 911);
+  console.log(myNote.get('help'))
+  console.log(myNote.get('bell'))
 
 }
 
