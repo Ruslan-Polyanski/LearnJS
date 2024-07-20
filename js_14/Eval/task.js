@@ -30,7 +30,7 @@
   // глобальной области видимости.
 
   function doVariable(name, value) {
-    eval(`var ${name} = ${value}`)
+    window.eval(`var ${name} = ${value}`)
   }
 
   doVariable('myNumber', 42);
