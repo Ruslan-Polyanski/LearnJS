@@ -46,3 +46,26 @@
 }
 
 
+() => {
+
+  // This "curried" version of the original function should expand its arguments when 
+  // invoked with arguments. It should allow multiple arguments to be passed into each 
+  // invocation. It should execute the original function and then restore that 
+  // function's original argument-less state when invoked without arguments.
+
+  // function adder () {
+  //   return [].slice.call(arguments).reduce(function(a,b){
+  //     return a + b
+  //   },0);
+  // }
+  
+  // const curryAdder = Curry(adder);
+
+  // curryAdder(1);
+  // curryAdder(1,2,3);
+  // curryAdder(2)(2,5);
+  // const example = curryAdder(); // 16
+  // curryAdder(1)(2);
+  // const example2 = curryAdder(); // 3
+
+}
