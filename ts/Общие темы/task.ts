@@ -43,6 +43,7 @@
 }
 
 
+
 () => {
 
   // * Создайте в двух вариантах (алиасах и интерфейсах) следующую структуру:
@@ -89,3 +90,34 @@
   }
 
 }
+
+
+
+() => {
+
+  // * Реализуйте асинхронный вариант функции map() - asyncMap(). Первым аргументом asyncMap() принимает массив 
+  // * с Promise. Вторым — функцию, которая применяется к каждому элементу. Функция должна вернуть массив 
+  // * с результатами выполнения функции для каждого элемента:
+
+  const promisedNumbers = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
+
+  async function asyncMap<T>(arr: Array<Promise<T>>, callBack: (num: T, index: number) => number) {
+     
+    const result = await Promise.all(arr);
+    const newResult: number[] = [];
+    
+    for(let i = 0; i < result.length; ++i) {
+      const res = callBack(result[i], i);
+      newResult.push(res)
+    }
+
+    return newResult;
+  }
+
+  asyncMap(promisedNumbers, (num, index) => num * index).then((result) => {
+    console.log(result); // [0, 2, 6]
+  });
+
+}
+
+
