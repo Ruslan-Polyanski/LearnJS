@@ -28,7 +28,7 @@ class MyPromise {
     if(this._state === "pending") {
       this._state = "fullfield";
       this._result = value;
-      this._queueMicrotask.res.forEach(res => res(value))
+      queueMicrotask(() => this._queueMicrotask.res.forEach(res => res(value)))
     }
   }
 
@@ -36,7 +36,7 @@ class MyPromise {
     if(this._state === "pending") {
       this._state = "rejected";
       this._result = error;
-      this._queueMicrotask.rej.forEach(rej => rej(error))
+      queueMicrotask(() => this._queueMicrotask.rej.forEach(rej => rej(error)))
     }
   }
 
@@ -49,7 +49,11 @@ class MyPromise {
           this._queueMicrotask.res.push(() => {
             try {
               const newResult = res(this._result);
-              resolve(resolve)
+              if(newResult instanceof MyPromise) {
+                newResult.then(resolve, reject)
+              } else {
+                resolve(newResult)
+              }
             } catch(error) {
               reject(error)
             }
@@ -60,7 +64,11 @@ class MyPromise {
           this._queueMicrotask.rej.push(() => {
             try {
               const newResult = rej(this._result);
-              reject(newResult)
+              if(newResult instanceof MyPromise) {
+                newResult.then(resolve, reject)
+              } else {
+                reject(newResult)
+              }
             } catch(error) {
               reject(error)
             }
@@ -71,7 +79,11 @@ class MyPromise {
       if(typeof res === "function" && this._state === "fullfield") {
           try {
             const newResult = res(this._result);
-            resolve(resolve)
+            if(newResult instanceof MyPromise) {
+              newResult.then(resolve, reject)
+            } else {
+              resolve(newResult)
+            }
           } catch(error) {
             reject(error)
           }
@@ -80,7 +92,11 @@ class MyPromise {
       if(typeof rej === "function" && this._state === "rejected") {
           try {
             const newResult = rej(this._result);
-            reject(newResult)
+            if(newResult instanceof MyPromise) {
+              newResult.then(resolve, reject)
+            } else {
+              reject(newResult)
+            }
           } catch(error) {
             reject(error)
           }
@@ -99,8 +115,37 @@ class MyPromise {
 
 const promise = new MyPromise((resolve, reject) => {
     setTimeout(() => {
-      resolve('Errorrrrrrrrrr')
+      resolve('Ok')
     }, 3000)
 })
 
-promise.then(result => console.log(result))
+promise.then(result => console.log(result)).then(res => console.log(res))
+
+
+
+
+console.log('start')
+
+const promise1 = new MyPromise((resolve, reject) => {
+  console.log(1)
+})
+
+console.log('end');
+
+
+
+
+
+console.log('start');
+
+const promise1 = new MyPromise((resolve, reject) => {
+  console.log(1)
+  resolve(2)
+  console.log(3)
+})
+
+promise1.then(res => {
+  console.log(res)
+})
+
+console.log('end');
