@@ -121,3 +121,103 @@
 }
 
 
+
+() => {
+
+  // * Как типизировать функции isAnInternetOrder и isATelephoneOrder
+  // * Решение в блоке ниже
+
+  // interface Order {
+  //   address: string;
+  // }
+  
+  // interface TelephoneOrder extends Order {
+  //   callerNumber: string;
+  // }
+  
+  // interface InternetOrder extends Order {
+  //   email: string;
+  // }
+   
+  // type PossibleOrders = TelephoneOrder | InternetOrder | undefined;
+   
+  // function isAnInternetOrder(order: PossibleOrders) {
+  // }
+   
+  // function isATelephoneOrder(order: PossibleOrders) {
+  // }
+   
+  // function makeOrder(order: PossibleOrders) {
+  //   if (isAnInternetOrder(order)) {
+  //     console.log(order.email);
+  //   } else if (isATelephoneOrder(order)) {
+  //     console.log(order.callerNumber);
+  //   }
+  // }
+
+}
+
+
+
+() => {
+
+ // * Решение для кода который находится в блоке выше 
+
+ interface Order {
+    address: string;
+  }
+
+  interface TelephoneOrder extends Order {
+    callerNumber: string;
+  }
+
+  interface InternetOrder extends Order {
+    email: string;
+  }
+  
+  type PossibleOrders = TelephoneOrder | InternetOrder | undefined;
+  
+  function isAnInternetOrder(order: PossibleOrders): order is InternetOrder {
+      return (order as InternetOrder).email !== undefined;
+  }
+  
+  function isATelephoneOrder(order: PossibleOrders): order is TelephoneOrder {
+      return (order as TelephoneOrder).callerNumber !== undefined;
+  }
+  
+  function makeOrder(order: PossibleOrders) {
+    if (isAnInternetOrder(order)) {
+      console.log(order.email);
+    } else if (isATelephoneOrder(order)) {
+      console.log(order.callerNumber);
+    }
+  }
+
+}
+
+
+
+() => {
+
+  // * Дана функция head, которая возвращает либо первый символ переданной строки, 
+  // * либо первый элемент переданного массива. Приведенные типы функции заведомо 
+  // * избыточны. Необходимо переписать их, используя подход перегрузки.
+
+  // * function head(value: string | number[] | boolean[]): string | number | boolean {
+  //   * return value[0];
+  // * }
+
+  function head(value: string): string;
+  function head(value: number[]): number;
+  function head(value: boolean[]): boolean;
+
+  function head(value: any): any {
+    return value[0];
+  }
+
+  head('sdfsdf')
+  head([123])
+  head([true, false, true])
+}
+
+
