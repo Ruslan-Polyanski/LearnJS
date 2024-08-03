@@ -221,3 +221,62 @@
 }
 
 
+
+() => {
+
+  // * Практика на дженерики
+
+  type Primitive<T> = T;
+  type Tstr = Primitive<string>
+  type Tnum = Primitive<number>
+  type TisBool = Primitive<true>
+
+  type Obj<T, U> = {
+    'name': T;
+    'age': U;
+  }
+
+  type TObj = Obj<string, number>
+
+
+  interface User<T> {
+    name: string;
+    age: T;
+  }
+
+  type TUser = User<number>
+
+  const Ruslan: TUser = {
+    name: 'Ruslan',
+    age: 29
+  }
+
+  function Head<T>(value: T[]): T
+  function Head(value: any): any {
+    return value[0];
+  }
+
+  const Head1 = <T>(value: T[]) => value[0];
+
+}
+
+
+() => {
+
+  // Затипизируйте данную функцию:
+  // function append(el, list) {
+  //   return list.concat(el)
+  // }
+
+  function append<T>(el: T, list: T[]): T[]
+  function append(el, list) {
+    return list.concat(el)
+  }
+
+  append(1, [12, 12])
+  append('1', ['1', '3'])
+  append(1, ['1']) // Ошибка
+
+}
+
+
